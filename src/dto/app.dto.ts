@@ -89,11 +89,17 @@ export class FindSubjectDto {
   readonly code: string;
 }
 
-export class FindExperimentDto {
-  @IsInt({ message: 'subject必须是数字' })
-  @IsNotEmpty({ message: 'subject不能为空' })
+export class FindExperimentsByIdDto {
+  @IsString({ message: 'id必须是字符串' })
+  @IsNotEmpty({ message: 'id不能为空' })
+  readonly ids: string;
+}
+
+export class FindExperimentsBySubjectDto {
+  @IsInt({ message: 'subjectId必须是数字' })
+  @IsNotEmpty({ message: 'subjectId不能为空' })
   @Transform(id => parseInt(id.value))
-  readonly subject: number;
+  readonly id: number;
 }
 
 export class UserGradeDto {

@@ -1,8 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { Expose, Exclude } from 'class-transformer';
 
 @Entity()
@@ -19,4 +15,8 @@ export class Subject {
   @Expose()
   @Column({ length: 20 })
   code: string;
+
+  @Expose()
+  @Column({ length: 6000 })
+  experiments: string;
 }

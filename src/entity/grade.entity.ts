@@ -17,7 +17,7 @@ export class Grade {
   readonly experiment: number;
 
   @Expose()
-  @Column({ type: 'int' })
+  @Column({ type: "float" })
   readonly score: number;
 
   @Expose()

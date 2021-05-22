@@ -15,7 +15,8 @@ import {
   UserCreateDto,
   UserNameDto,
   FindSubjectDto,
-  FindExperimentDto,
+  FindExperimentsByIdDto,
+  FindExperimentsBySubjectDto,
   UserGradeDto,
   SetUserGradeDto,
   AddUserCountDto,
@@ -118,11 +119,20 @@ export class AppService {
     }
   }
 
-  public async findExperiments(
-    query: FindExperimentDto,
+  public async findfindExperimentsById(
+    query: FindExperimentsByIdDto,
   ): Promise<Experiment[]> {
-    const { subject } = query;
-    const experiments = await this.experimentRepository.find({ subject });
+    const { ids } = query;
+    const idList = ids.split(',');
+    const experiments = await this.experimentRepository.findByIds(idList);
+    return experiments;
+  }
+
+  public async findExperimentsBySubject(
+    query: FindExperimentsBySubjectDto,
+  ): Promise<Experiment[]> {
+    const { id } = query;
+    const experiments = await this.experimentRepository.find({ subject: id });
     return experiments;
   }
 

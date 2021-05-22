@@ -3,7 +3,8 @@ import {
   LoginDto,
   UserCreateDto,
   FindSubjectDto,
-  FindExperimentDto,
+  FindExperimentsByIdDto,
+  FindExperimentsBySubjectDto,
   UserGradeDto,
   SetUserGradeDto,
   AddUserCountDto,
@@ -37,11 +38,16 @@ export class AppController {
     return await this.appService.findSubject(query);
   }
 
-  @Get('/experiments/find')
-  public async findExperiments(
-    @Query() query: FindExperimentDto,
+  @Get('/experiments/find/by/id')
+  public async findfindExperimentsById(@Query() query: FindExperimentsByIdDto) {
+    return await this.appService.findfindExperimentsById(query)
+  }
+
+  @Get('/experiments/find/by/subject')
+  public async findExperimentsBySubject(
+    @Query() query: FindExperimentsBySubjectDto,
   ): Promise<Experiment[]> {
-    return await this.appService.findExperiments(query);
+    return await this.appService.findExperimentsBySubject(query);
   }
 
   @Get('/user/grade/find')
